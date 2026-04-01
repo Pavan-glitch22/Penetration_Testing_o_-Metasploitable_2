@@ -65,10 +65,14 @@ Key services detected:
 - `6667/tcp` — UnrealIRCd
 
 ### screenshot
+![Service_Detection](./screenshots_p/service_&_version_detection.png)
 ### 3. Enumeration
 - **nbtscan**: Confirmed NetBIOS name `METASPLOITABLE`, workgroup `WORKGROUP`
 - **Web enumeration**: Accessed `http://192.168.56.101` — found vulnerable web apps: DVWA, Mutillidae, phpMyAdmin, TWiki, WebDAV
 - **enum4linux**: Revealed null session authentication on SMB, known usernames (`administrator`, `guest`, `root`, `bin`, etc.), weak password policy (min length: 5, complexity: disabled)
+
+### screenshot
+![Enum4Linux](./screenshot_p/enum4linux_p.png)
 
 ### 4. Vulnerability Assessment
 Nessus Essentials identified **68 total vulnerabilities** (Critical / High / Medium / Low).
@@ -94,21 +98,39 @@ All exploits were performed using **Metasploit Framework** from Kali Linux.
 - **Module:** `exploit/unix/ftp/vsftpd_234_backdoor`
 - **Result:** Meterpreter session opened with remote shell access
 
+### screenshot
+![vsftpd](./screenshot_p/vsftpd_exploitaion_p.png)
+![vsftpd](./screenshot_p/vsftpd_inside_the_system.png)
+
 #### Exploit 2 — UnrealIRCd Backdoor (`CVE-2010-2075`)
 - **Module:** `exploit/unix/irc/unreal_ircd_3281_backdoor`
 - **Result:** Meterpreter session opened; access to `/etc/unreal` confirmed
+
+### screenshot
+![unrealRCD_backdoor](./screenshot_p/unrealRCD_backdoor_p.png)
+![unrealRCD_backdoor](./screenshot_p/unrealRCD_inside_the_system_p.png)
 
 #### Exploit 3 — Samba Username Map Script
 - **Module:** `exploit/multi/samba/usermap_script`
 - **Result:** Root-level command shell obtained (`uid=0(root) gid=0(root)`)
 
+### screenshot
+![Samba](./screenshot_p/Samba_username_map_script_p.png)
+![Samba](./screenshot_p/Samba_username_map_script_exploit_inside_the_system_p.png)
+
 #### Exploit 4 — DistCC Remote Command Execution
 - **Module:** `exploit/unix/misc/distcc_exec`
 - **Result:** Command shell as `daemon` user
 
+### screenshot
+![DistCC_Remote_access](./screenshot_p/Distcc_remote_p.png)
+
 #### Exploit 5 — Java RMI Remote Code Execution
 - **Module:** `exploit/multi/misc/java_rmi_server`
 - **Result:** Meterpreter session opened via malicious JAR payload
+
+### screenshot
+![Java_RMI_Remote_access](./screenshot_p/Java_RMI_remote_code_execution_p.png)
 
 ### 6. Remediation
 Based on Nessus recommendations:
@@ -130,12 +152,8 @@ Based on Nessus recommendations:
 - Proper hardening, patching, and monitoring would have prevented every exploit demonstrated in this assessment
 
 ---
-
-## Disclaimer
-
-> This penetration test was conducted in a **controlled lab environment** on an **intentionally vulnerable machine** (Metasploitable 2) for **educational purposes only**. Performing these techniques on systems without explicit written authorization is illegal and unethical.
-
-
+## Report
+**[View Full Report](./Penetration_Testing_on_Metasploitable_2.pdf)
 
 ---
 
